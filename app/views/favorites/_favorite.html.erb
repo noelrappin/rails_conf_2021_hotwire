@@ -1,0 +1,36 @@
+<%- concert = favorite.concert %>
+<article class="my-6">
+  <div class="grid gap-4 grid-cols-5">
+    <div class="col-span-1 text-xl">
+      <%= concert.start_time.by_example("Jan 02 @ 3:04 PM") %>
+    </div>
+    <div class="col-span-3">
+      <div class="name">
+        <div class="text-lg font-bold">
+          <%= link_to(concert.name, concert) %>
+        </div>
+      </div>
+      <div class="bands">
+        <%= concert.bands.map(&:name).join(", ") %>
+      </div>
+      <div class="genres">
+        <%= concert.genre_tags.split(",").to_sentence %>
+      </div>
+      <div class="text-gray-500 font-bold">
+        <%= concert.venue.name %>
+      </div>
+    </div>
+    <div class="col-span-1 text-xl">
+      <span></span>
+      <br />
+      <br />
+      <div class="flex">
+        <%= button_to(
+          "Remove Favorite",
+          favorite_path(id: favorite.id),
+          method: "delete",
+          class: SimpleForm.button_class) %>
+      </div>
+    </div>
+  </div>
+</article>

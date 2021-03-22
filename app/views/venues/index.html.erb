@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Venues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Rows</th>
+      <th>Seats per row</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @venues.each do |venue| %>
+      <tr>
+        <td><%= venue.name %></td>
+        <td><%= venue.description %></td>
+        <td><%= venue.rows %></td>
+        <td><%= venue.seats_per_row %></td>
+        <td><%= link_to 'Show', venue %></td>
+        <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
+        <td><%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Venue', new_venue_path %>

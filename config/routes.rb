@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :favorites
+  resource :schedule
+  resources :shopping_carts
+  resources :tickets
+  resources :gigs
+  resources :concerts
+  resources :bands
+  resources :venues
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root(to: "schedules#show")
 end

@@ -1,0 +1,78 @@
+<h1 class="text-4xl font-bold w-auto text-center"><%= @concert.name %></h1>
+<h2 class="text-2xl font-semibold">Ticket Info</h2>
+<h3 class="text-xl"><%= @concert.ilk %></h3>
+<h3 class="text-xl"><%= @concert.access %></h3>
+<h3 class="text-xl">
+  Start Date: &nbsp;
+  <%= @concert.start_time.by_example("Jan 02, 2006") %>
+</h3>
+<h3 class="text-xl">Venue: <%= @concert.venue.name %></h3>
+<h3 class="text-xl">Schedule:</h3>
+<% running_time = @concert.start_time %>
+<table class="table border border-black w-4/5">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Band</th>
+      <th>Genres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @concert.gigs.each do |gig| %>
+      <tr>
+        <td><%= running_time.by_example("03:04 PM") %></td>
+        <td><%= gig.band.name %></td>
+        <td><%= gig.band.genre_tags.split(",").join(", ") %></td>
+        <% running_time += (gig.duration_minutes * 60) %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<h2 class="text-2xl font-semibold mt-12">Tickets</h2>
+<div class="concert">
+  <div class="header">
+    <span>Current Tickets Purchased: &nbsp;</span>
+    <span>0</span>
+  </div>
+  <div class="header">
+    <span>Current Tickets Cost: &nbsp;</span>
+    <span>$0.00</span>
+  </div>
+  <div class="px-5 py-4 m-2 my-4 w-40 text-center text-white transition-colors duration-150 bg-gray-800 rounded-lg focus:shadow-outline hover:bg-black">
+    Clear Tickets
+  </div>
+  <div>
+    <span class="header">How many tickets would you like?</span>
+    <span class="select">
+      <select>
+        <%= @concert.venue.seats_per_row.times do |seat| %>
+          <option><%= seat + 1 %></option>
+        <% end %>
+      </select>
+    </span>
+  </div>
+  <table class="table">
+    <tbody>
+      <% @concert.venue.rows.times do |row| %>
+        <tr>
+          <% @concert.venue.seats_per_row.times do |seat| %>
+            <% ticket = @concert.find_ticket_at(row: row + 1, number: seat + 1) %>
+            <td>
+              <%= link_to(ticket_path(ticket.id),
+                    method: :patch) do %>
+                <div class="<%= ticket.color_for(current_user) %> p-4 m-2 border-black border-4 button hover:bg-blue-300 text-lg">
+                  <%= seat + 1 %>
+                </div>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="actions">
+  <%= link_to("Edit", edit_concert_path(@concert)) %>
+  |
+  <%= link_to("Back", concerts_path) %>
+</div>

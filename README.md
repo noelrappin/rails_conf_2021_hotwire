@@ -1,24 +1,34 @@
-# README
+This is the code for a workshop at RailsConf 2021, see the other workshops on
+the program at <https://railsconf.com/program/workshops>.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Hotwire: HTML over The Wire
 
-Things you may want to cover:
+Last December, the team behind Basecamp and Hey released Hotwire, a library for managing client side interactions by sending HTML to the client. Hotwire bundles the Stimulus JavaScript library with an expanded Turbo library which makes a wide range of client side interactions possible without writing any custom JavaScript. In this workshop, attendees will see first-hand how powerful the new library is by adding powerful interactions to a basic Rails view.
 
-* Ruby version
+## Prerequisites
 
-* System dependencies
+This workshop assumes you already know a little bit about Ruby, Rails and
+JavaScript, but doesn't require expert level knowledge of any of those things.
 
-* Configuration
+The workshop uses this Rails application as an example. I recommend that you
+download it and get it working before the workshop starts.
 
-* Database creation
+Questions about the workshop or about setup should be directed to Noel at
+<mailto:noelrap@hey.com>.
 
-* Database initialization
+## Getting Ready
 
-* How to run the test suite
+In order to run this application you'll need:
 
-* Services (job queues, cache servers, search engines, etc.)
+- Ruby 3.0
+- Yarn 1.x
+- Whatever version of Node lets you run Yarn.
+- Sqlite3 (I think any recent version will work)
 
-* Deployment instructions
+After downloading the app:
 
-* ...
+- run `bin/setup` -- this will download gems and JavaScript packages.
+
+The database is already pointing to binary Sqlite3 files in `db`, so you
+can run the app with `rails server`, then see the result at
+`http://localhost/3000`.

@@ -1,0 +1,10 @@
+<h2 class="text-3xl font-bold">
+  <%= schedule_day.day.by_example("Monday, January 2, 2006") %>
+</h2>
+<% if show %>
+  <section>
+    <% schedule_day.concerts.sort_by(&:start_time).each do |concert| %>
+      <%= render concert %>
+    <% end %>
+  </section>
+<% end %>

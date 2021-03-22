@@ -1,0 +1,19 @@
+
+<%= simple_form_for(@ticket) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :concert %>
+    <%= f.input :row %>
+    <%= f.input :number %>
+    <%= f.association :user %>
+    <%= f.input :status %>
+    <%= f.association :ticket_order %>
+    <%= f.association :shopping_cart %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

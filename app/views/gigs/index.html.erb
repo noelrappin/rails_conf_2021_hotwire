@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Gigs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Band</th>
+      <th>Concert</th>
+      <th>Order</th>
+      <th>Duration minutes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gigs.each do |gig| %>
+      <tr>
+        <td><%= gig.band_id %></td>
+        <td><%= gig.concert_id %></td>
+        <td><%= gig.order %></td>
+        <td><%= gig.duration_minutes %></td>
+        <td><%= link_to 'Show', gig %></td>
+        <td><%= link_to 'Edit', edit_gig_path(gig) %></td>
+        <td><%= link_to 'Destroy', gig, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gig', new_gig_path %>

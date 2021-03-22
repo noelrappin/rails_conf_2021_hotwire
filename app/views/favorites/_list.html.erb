@@ -1,0 +1,15 @@
+<section class="my-4" id="favorite-section">
+  <div class="text-3xl font-bold">
+    Favorite Concerts
+    <span class="<%= SimpleForm.button_class %> blue-hover ml-6">
+      <%= image_pack_tag(
+        "chevron-right.svg",
+        width: 25, height: 25, class: "inline") %>
+    </span>
+  </div>
+  <div id="favorite-concerts-list">
+    <% current_user.favorites.sort_by(&:sort_date).each do |favorite| %>
+      <%= render(favorite) %>
+    <% end %>
+  </div>
+</section>
