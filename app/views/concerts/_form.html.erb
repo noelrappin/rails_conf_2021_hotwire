@@ -1,36 +1,38 @@
-<article class="my-4">
-  <%= simple_form_for(@concert) do |f| %>
-    <% if f.object.errors[:base].present? %>
-      <%= f.error_notification %>
-      <%= f.error_notification message: f.object.errors[:base].to_sentence %>
-    <% end %>
-    <div class="grid gap-4 grid-cols-12">
-      <div class="col-span-3 text-xl">
-        <%= f.input :start_time, label: false %>
-      </div>
-      <div class="col-span-7">
-        <div class="name">
-          <div class="text-lg font-bold">
-            <%= f.input :name, label: false %>
+<%= turbo_frame_tag(dom_id(concert)) do %>
+  <article class="my-4">
+    <%= simple_form_for(@concert) do |f| %>
+      <% if f.object.errors[:base].present? %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence %>
+      <% end %>
+      <div class="grid gap-4 grid-cols-12">
+        <div class="col-span-3 text-xl">
+          <%= f.input :start_time, label: false %>
+        </div>
+        <div class="col-span-7">
+          <div class="name">
+            <div class="text-lg font-bold">
+              <%= f.input :name, label: false %>
+            </div>
+          </div>
+          <div class="bands">
+            <%= concert.bands.map(&:name).join(", ") %>
+          </div>
+          <div class="genres">
+            <%= f.input :genre_tags, label: false %>
+          </div>
+          <div class="text-gray-500 font-bold">
+            <%= f.association :venue, label: false %>
           </div>
         </div>
-        <div class="bands">
-          <%= concert.bands.map(&:name).join(", ") %>
-        </div>
-        <div class="genres">
-          <%= f.input :genre_tags, label: false %>
-        </div>
-        <div class="text-gray-500 font-bold">
-          <%= f.association :venue, label: false %>
-        </div>
-      </div>
-      <div class="col-span-2 text-xl my-10">
-        <%= f.input :ilk, collection: Concert.ilks, label: false %>
-        <%= f.input :access, collection: Concert.accesses, label: false %>
-        <%= f.button :submit %>
-        <%= link_to("Cancel", concert_path(@concert, inline: true),
+        <div class="col-span-2 text-xl my-10">
+          <%= f.input :ilk, collection: Concert.ilks, label: false %>
+          <%= f.input :access, collection: Concert.accesses, label: false %>
+          <%= f.button :submit %>
+          <%= link_to("Cancel", concert_path(@concert, inline: true),
             class: "#{SimpleForm.button_class} py-2 mt-4") %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</article>
+    <% end %>
+  </article>
+<% end %>

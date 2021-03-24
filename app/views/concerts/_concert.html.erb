@@ -1,52 +1,54 @@
-<article class="my-6" data-text-toggle-target="concert">
-  <div class="grid gap-4 grid-cols-5">
-    <div class="col-span-1 text-xl">
-      <%= concert.start_time.by_example("3:04 PM") %>
-    </div>
-    <div class="col-span-3">
-      <div class="name">
-        <div class="text-lg font-bold">
-          <%= link_to(concert.name, concert) %>
+<%= turbo_frame_tag(dom_id(concert)) do %>
+  <article class="my-6" data-text-toggle-target="concert">
+    <div class="grid gap-4 grid-cols-5">
+      <div class="col-span-1 text-xl">
+        <%= concert.start_time.by_example("3:04 PM") %>
+      </div>
+      <div class="col-span-3">
+        <div class="name">
+          <div class="text-lg font-bold">
+            <%= link_to(concert.name, concert) %>
+          </div>
+        </div>
+        <div class="bands">
+          <%= concert.bands.map(&:name).join(", ") %>
+        </div>
+        <div class="genres">
+          <%= concert.genre_tags.split(",").to_sentence %>
+        </div>
+        <div class="text-gray-500 font-bold">
+          <%= concert.venue.name %>
         </div>
       </div>
-      <div class="bands">
-        <%= concert.bands.map(&:name).join(", ") %>
-      </div>
-      <div class="genres">
-        <%= concert.genre_tags.split(",").to_sentence %>
-      </div>
-      <div class="text-gray-500 font-bold">
-        <%= concert.venue.name %>
-      </div>
-    </div>
-    <div class="col-span-1 text-xl">
-      <% if concert.sold_out? %>
-        Sold out
-      <% else %>
-        <%= pluralize(concert.unsold_ticket_count, "Tickets") %>
-        Remaining
-      <% end %>
-      <br/>
-      <br/>
-      <div class="flex">
-        <% if user %>
-          <% if user.favorite(concert) %>
-            <%= button_to "Remove Favorite",
+      <div class="col-span-1 text-xl">
+        <% if concert.sold_out? %>
+          Sold out
+        <% else %>
+          <%= pluralize(concert.unsold_ticket_count, "Tickets") %>
+          Remaining
+        <% end %>
+        <br/>
+        <br/>
+        <div class="flex">
+          <% if user %>
+            <% if user.favorite(concert) %>
+              <%= button_to "Remove Favorite",
               favorite_path(id: user.favorite(concert)),
               method: "delete",
               class: SimpleForm.button_class %>
-          <% else %>
-            <%= button_to "Make Favorite",
+            <% else %>
+              <%= button_to "Make Favorite",
               favorites_path(concert_id: concert.id),
               method: "post",
               class: SimpleForm.button_class %>
-          <% end %>
-          <%= link_to(edit_concert_path(concert),
+            <% end %>
+            <%= link_to(edit_concert_path(concert),
             class: SimpleForm.button_class) do %>
-            Edit
+              Edit
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</article>
+  </article>
+<% end %>
