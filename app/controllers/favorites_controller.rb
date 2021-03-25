@@ -7,11 +7,13 @@ class FavoritesController < ApplicationController
       user: current_user,
       concert_id: params[:concert_id]
     )
+    head(:ok)
   end
 
   def destroy
     @favorite = Favorite.find(params[:id])
     @favorite.destroy
+    head(:ok)
   end
 
   private def favorite_params
