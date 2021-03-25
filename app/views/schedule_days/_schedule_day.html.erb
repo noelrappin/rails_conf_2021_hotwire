@@ -4,7 +4,7 @@
 <% if show %>
   <section>
     <% schedule_day.concerts.sort_by(&:start_time).each do |concert| %>
-      <%= render concert %>
+      <%= render concert, user: user %>
     <% end %>
   </section>
 <% end %>

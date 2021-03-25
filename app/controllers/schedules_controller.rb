@@ -4,7 +4,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.from_concerts(@concerts)
     @schedule.hide(params[:hidden]&.split(",") || [])
     @schedule.schedule_day_at(params[:toggle])&.toggle!
-
+    @user = current_user
     respond_to do |format|
       format.html
       format.json { render(json: @concerts) }

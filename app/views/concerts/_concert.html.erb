@@ -29,10 +29,10 @@
       <br/>
       <br/>
       <div class="flex">
-        <% if current_user %>
-          <% if current_user.favorite(concert) %>
+        <% if user %>
+          <% if user.favorite(concert) %>
             <%= button_to "Remove Favorite",
-              favorite_path(id: current_user.favorite(concert)),
+              favorite_path(id: user.favorite(concert)),
               method: "delete",
               class: SimpleForm.button_class %>
           <% else %>

@@ -8,7 +8,7 @@
     </span>
   </div>
   <div id="favorite-concerts-list">
-    <% current_user.favorites.sort_by(&:sort_date).each do |favorite| %>
+    <% user.favorites.sort_by(&:sort_date).each do |favorite| %>
       <%= render(favorite) %>
     <% end %>
   </div>

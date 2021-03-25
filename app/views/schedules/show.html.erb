@@ -23,15 +23,15 @@
     </div>
   </section>
   <br>
-  <% if current_user %>
-    <%= render "favorites/list" %>
+  <% if @user %>
+    <%= render "favorites/list", user: @user %>
   <% end %>
   <section>
     <% @schedule.schedule_days.each do |schedule_day| %>
       <% date_string = schedule_day.day.by_example("2006-01-02") %>
       <section class="day-body"
                id="day-body-<%= schedule_day.day_string %>">
-        <%= render schedule_day, show: !schedule_day.hidden %>
+        <%= render schedule_day, show: !schedule_day.hidden, user: @user %>
       </section>
       <br>
     <% end %>
