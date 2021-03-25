@@ -1,0 +1,4 @@
+<%= turbo_stream.remove(dom_id(@favorite)) %>
+<%= turbo_stream.replace(dom_id(@favorite.concert)) do %>
+  <%= render(@favorite.concert, user: @favorite.user) %>
+<% end %>
