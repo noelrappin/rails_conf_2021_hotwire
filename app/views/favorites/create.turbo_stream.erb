@@ -1,4 +1,6 @@
-<%= turbo_stream.append("favorite-concerts-list", @favorite) %>
+<%= turbo_stream.append("favorite-concerts-list") do %>
+  <%= render(@favorite, animate_in: true) %>
+<% end %>
 <%= turbo_stream.replace(dom_id(@favorite.concert)) do %>
   <%= render(@favorite.concert, user: @favorite.user) %>
 <% end %>
