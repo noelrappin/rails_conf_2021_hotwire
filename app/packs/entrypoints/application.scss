@@ -2,3 +2,33 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "animate.css/animate.css";
+
+.is-open {
+  transform: rotate(90deg);
+}
+
+.is-closed {
+  transform: rotate(-90deg);
+}
+
+.arrow-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+.blue-hover {
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: blue;
+  }
+}
+
+.resizer {
+  transition: all 1s ease-in-out;
+  max-height: 1000px;
+  overflow: hidden;
+
+  &.shrink {
+    max-height: 0px;
+  }
+}
