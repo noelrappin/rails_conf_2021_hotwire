@@ -1,4 +1,9 @@
-<%= turbo_frame_tag(dom_id(concert)) do %>
+<%= turbo_frame_tag(
+      dom_id(concert),
+      class: "concert",
+      "data-sort-target": "sortElement",
+      "data-sort-value": concert.start_time.to_i,
+      "data-#{concert.start_time.by_example("2006-01-02")}": true) do %>
   <article class="my-6" data-text-toggle-target="concert">
     <div class="grid gap-4 grid-cols-5">
       <div class="col-span-1 text-xl">

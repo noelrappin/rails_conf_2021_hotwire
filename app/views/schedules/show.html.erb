@@ -1,4 +1,17 @@
 <%= turbo_stream_from(@user, :favorites) %>
+<style>
+  <% @schedule.schedule_days.each do |schedule_day| %>
+    <% today = "data-#{schedule_day.day.by_example("2006-01-02")}" %>
+    .concert[<%= today %>]:first-child::before,
+    .concert:not([<%= today %>]) + [<%= today %>]::before
+    {
+        content: "<%= schedule_day.day.by_example("Monday, January 2, 2006") %>";
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+        font-weight: 700;
+    }
+  <% end %>
+</style>
 <section>
   <section>
     <div class="grid grid-cols-7 gap-0 mb-6">
@@ -27,14 +40,9 @@
   <% if @user %>
     <%= render "favorites/list", user: @user %>
   <% end %>
-  <section>
-    <% @schedule.schedule_days.each do |schedule_day| %>
-      <% date_string = schedule_day.day.by_example("2006-01-02") %>
-      <section class="day-body"
-               id="day-body-<%= schedule_day.day_string %>">
-        <%= render schedule_day, show: !schedule_day.hidden, user: @user %>
-      </section>
-      <br>
+  <section data-controller="sort">
+    <% @concerts.sort_by(&:start_time).each do |concert| %>
+      <%= render concert, user: @user %>
     <% end %>
   </section>
 </section>

@@ -1,0 +1,3 @@
+<%= turbo_stream.replace(dom_id(@concert)) do %>
+  <%= render(@concert, user: current_user) %>
+<% end %>
