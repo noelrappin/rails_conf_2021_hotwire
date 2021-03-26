@@ -1,14 +1,30 @@
 <%= turbo_frame_tag("favorite-concerts") do %>
-  <section class="my-4" id="favorite-section">
-    <div class="text-3xl font-bold">
+  <section class="my-4"
+           id="favorite-section"
+           data-controller="fade"
+           data-fade-status-value="true"
+           data-fade-clean-value="true"
+           data-fade-fade-in-class="fadeInDown"
+           data-fade-fade-out-class="fadeOutUp">
+    <div class="text-3xl font-bold z-20">
       Favorite Concerts
-      <span class="<%= SimpleForm.button_class %> blue-hover ml-6">
+      <span class="<%= SimpleForm.button_class %> blue-hover ml-6"
+            data-controller="flip"
+            data-flip-status-value="true"
+            data-flip-true-class="rotate-90"
+            data-flip-false-class="-rotate-90"
+            data-action="click->flip#toggle click->fade#fade">
         <%= image_pack_tag(
-        "chevron-right.svg",
-        width: 25, height: 25, class: "inline") %>
+              "chevron-right.svg",
+              width: 25,
+              height: 25,
+              class: "inline transform transition-transform duration-1000",
+              "data-flip-target": "elementToChange" ) %>
       </span>
     </div>
-    <div id="favorite-concerts-list">
+    <div id="favorite-concerts-list"
+         data-fade-target="elementToChange"
+         data-action="animationend->fade#animationend animationstart->fade#animationstart">
       <% user.favorites.sort_by(&:sort_date).each do |favorite| %>
         <%= render(favorite) %>
       <% end %>
