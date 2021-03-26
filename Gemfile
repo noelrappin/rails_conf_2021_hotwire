@@ -7,6 +7,7 @@ gem "amazing_print"
 gem "bootsnap", ">= 1.4.4", require: false
 gem "date_by_example"
 gem "devise"
+gem "hotwire-rails"
 gem "jbuilder", "~> 2.7"
 gem "puma", "~> 5.0"
 gem "rails", "~> 6.1.3"
@@ -15,7 +16,6 @@ gem "sass-rails", ">= 6"
 gem "simple_form"
 gem "simple_form-tailwind"
 gem "sqlite3", "~> 1.4"
-gem "turbo-rails"
 gem "webpacker", "6.0.0.beta.6"
 
 group :development, :test do
