@@ -23,6 +23,7 @@
       </span>
     </div>
     <div id="favorite-concerts-list"
+         data-controller="sort"
          data-fade-target="elementToChange"
          data-action="animationend->fade#animationend animationstart->fade#animationstart">
       <% user.favorites.sort_by(&:sort_date).each do |favorite| %>
