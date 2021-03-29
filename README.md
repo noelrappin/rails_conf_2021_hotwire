@@ -35,7 +35,7 @@ can run the app with `rails server`, then see the result at
 
 It should look like
 
-![][image.png]
+![][[image.png](https://github.com/noelrappin/rails_conf_2021_hotwire/blob/main/image.png)]
 
 To log in, the user name is:
 
