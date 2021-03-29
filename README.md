@@ -20,7 +20,9 @@ Questions about the workshop or about setup should be directed to Noel at
 
 In order to run this application you'll need:
 
-- Ruby 3.0
+- Ruby 3.0 (If you don't have Ruby 3.0, change the `.ruby-version` file, and the
+  version of Ruby in the `Gemfile`, Ruby 2.7.x should work, and Ruby 2.6.x
+  probably will work.)
 - Yarn 1.x
 - Whatever version of Node lets you run Yarn.
 - Sqlite3 (I think any recent version will work)
