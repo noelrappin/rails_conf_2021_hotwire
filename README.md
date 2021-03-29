@@ -32,3 +32,23 @@ After downloading the app:
 The database is already pointing to binary Sqlite3 files in `db`, so you
 can run the app with `rails server`, then see the result at
 `http://localhost/3000`.
+
+It should look like
+
+![][image.png]
+
+To log in, the user name is:
+
+`areader@example.com`
+
+and the password is:
+
+`awesome`.
+
+## Slides
+
+The PDF Slides are at [slides.pdf](slides.pdf), if you want to follow along.
+
+The original Markdown version of the slides are at [slides.md](slides.md). The
+markdown version contains all the code changes made in each step, so you can
+copy and paste them rather than type.
