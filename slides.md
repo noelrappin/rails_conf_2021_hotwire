@@ -43,7 +43,7 @@ footer: Noel Rappin | Hotwire: HTML Over The Wire | RailsConf 2021 | http://www.
 ## Noel Rappin (@noelrap)
 ## https://www.joinroot.com
 ## http://noelrappin.com
-## `#_hotwire_html_over_the_wire`
+## `#hotwire_html_over_the_wire`
 
 ---
 
@@ -59,7 +59,7 @@ footer: Noel Rappin | Hotwire: HTML Over The Wire | RailsConf 2021 | http://www.
 
 ---
 
-## https://github.com/noelrappin/rails_conf_2021_hotwire
+## `https://github.com/noelrappin/rails_conf_2021_hotwire`
 
 ---
 
@@ -182,7 +182,6 @@ footer: Noel Rappin | Hotwire: HTML Over The Wire | RailsConf 2021 | http://www.
 def show
   if params[:inline]
     render(@concert)
-    return
   end
 end
 ```
@@ -336,13 +335,13 @@ class FavoritesController < ApplicationController
 
   def create
     Favorite.create(user: current_user, concert_id: params[:concert_id])
-    render(partial: "favorites/list")
+    render(partial: "favorites/list", locals {user: current_user})
   end
 
   def destroy
     @favorite = Favorite.find(params[:id])
     @favorite.destroy
-    render(partial: "favorites/list")
+    render(partial: "favorites/list", locals: {user: current_user})
   end
 
   private def favorite_params
@@ -467,14 +466,18 @@ end
 
 ```erb
 <%= turbo_stream.append("favorite-concerts-list", @favorite) %>
-<%= turbo_stream.replace(dom_id(@favorite.concert), @favorite.concert) %>
+<%= turbo_stream.replace(dom_id(@favorite.concert)) do %>
+  <%= render(@favorite.concert, user: @favorite.user) %>
+<% end %>
 ```
 
 ### app/views/favorites/destroy.turbo_stream.erb
 
 ```erb
 <%= turbo_stream.remove(dom_id(@favorite)) %>
-<%= turbo_stream.replace(dom_id(@favorite.concert), @favorite.concert) %>
+<%= turbo_stream.replace(dom_id(@favorite.concert)) do %>
+  <%= render(@favorite.concert, user: @favorite.user) %>
+<% end %>
 ```
 
 ---
@@ -505,7 +508,10 @@ end
 <%= turbo_stream.append("favorite-concerts-list") do %>
   <%= render(@favorite, animate_in: true) %>
 <% end %>
-<%= turbo_stream.replace(dom_id(@favorite.concert), @favorite.concert) %>
+<%= turbo_stream.replace(dom_id(@favorite.concert)) do %>
+  <%= render(@favorite.concert, user: @favorite.user) %>
+<% end %>
+
 ```
 
 ---
@@ -1052,5 +1058,5 @@ end
 ## Noel Rappin (@noelrap)
 #### http://pragprog.com/book/nrclient
 #### http://pragprog.com/book/tailwind
-#### (25% off with 272b6dc9ab)
+#### (50% with ModernWeb2021)
 #### https://buttondown.email/noelrap

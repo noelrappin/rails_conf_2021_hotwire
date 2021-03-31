@@ -21,11 +21,10 @@ Questions about the workshop or about setup should be directed to Noel at
 In order to run this application you'll need:
 
 - Ruby 3.0 (If you don't have Ruby 3.0, change the `.ruby-version` file, and the
-  version of Ruby in the `Gemfile`, Ruby 2.7.x should work, and Ruby 2.6.x
-  probably will work.)
-- Yarn 1.x
-- Whatever version of Node lets you run Yarn.
-- Sqlite3 (I think any recent version will work)
+  version of Ruby in the `Gemfile`, Ruby 2.7.x should work. Ruby 2.6.x apparently does not work.)
+- Yarn 1.x <https://yarnpkg.com/getting-started/install>, apparently,`yarn set version 1.22.5` will work, and Yarn 2.0 will still not work with Webpacker.
+- Whatever version of Node lets you run Yarn. <https://nodejs.org/en/>
+- Sqlite3 (I think any recent version will work) <https://www.sqlite.org/download.html> or `brew install sqlite3`
 
 After downloading the app:
 
@@ -33,7 +32,7 @@ After downloading the app:
 
 The database is already pointing to binary Sqlite3 files in `db`, so you
 can run the app with `rails server`, then see the result at
-`http://localhost/3000`.
+`http://localhost:3000`.
 
 It should look like
 
